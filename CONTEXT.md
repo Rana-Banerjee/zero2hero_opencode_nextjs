@@ -8,52 +8,73 @@
 
 ## Status
 
-**Current milestone:** Step 5 complete — browsable site with lesson content
-**Currently working on:** Phase 2 complete
+**Current milestone:** Phase 2 complete — browsable site with lesson content
+**Currently working on:** AGENTS.md review + minor improvements
 **Last updated:** 2026-03-21
 
 ---
 
 ## What's Done
 
-- [X] AGENTS.md — agent behaviour rules, code style (imports, naming, error handling)
-- [X] PROJECT.md — goals, milestones, 17-step build plan, architecture decisions, colour palette
-- [X] CONTEXT.md — this file
+### Project Setup & Build
 - [X] Phase 1 Step 1 — Scaffold & Configure
 - [X] Phase 1 Step 2 — Root Layout & Dark Theme
 - [X] Phase 2 Step 3 — Route Groups & Navigation
 - [X] Phase 2 Step 4 — Lesson Data Layer
 - [X] Phase 2 Step 5 — Dynamic Routes & Lesson Pages
-  - `src/app/learn/page.tsx` — lesson index listing all 5 lessons
-  - `src/app/learn/[lessonId]/page.tsx` — individual lesson with vocab + phrases
-  - `src/app/learn/[lessonId]/not-found.tsx` — 404 for invalid lesson IDs
-  - Uses `generateStaticParams()` for SSG, `notFound()` for missing lessons
-  - Dynamic `generateMetadata()` for per-lesson `<title>`
+
+### Documentation (previous sessions)
+- [X] AGENTS.md — Tailwind v4, testing marked "planned", Content Pipeline, `satisfies` pattern
+- [X] PIPELINE.md — audioSrc fixes, lesson ID fix, table alignment
+- [X] CONTENT_AGENT.md — phrase ID fix
+
+### New Lesson Content (previous sessions)
+- [X] Food & Drink lesson (`food-and-drink`) — 8 vocab, 3 phrases
+- [X] Numbers 1–10 lesson (`numbers-one-to-ten`) — 10 vocab, 2 phrases
+
+### This Session — AGENTS.md Review
+- [X] Reviewed full codebase against AGENTS.md for accuracy
+- [X] Added `import type` syntax guidance to Imports section
+- [X] Added tsconfig.json path alias reference (`@/*` → `./src/*`)
+- [X] Confirmed no Cursor rules or Copilot instructions exist
+- [X] Verified all Key Commands match `package.json` scripts
+
+### Existing Lessons
+- `greetings` — 8 vocab, 3 phrases
+- `introductions` — 7 vocab, 3 phrases
+- `yes-no-maybe` — 8 vocab, 3 phrases
+- `numbers-one-to-ten` — 10 vocab, 2 phrases
+- `food-and-drink` — 8 vocab, 3 phrases
 
 ---
 
 ## What's Next
 
-Phase 2 complete — browsable site with lesson content. Next: Phase 3 Step 6 — UI Component Library.
+1. Phase 3 Step 6 — UI Component Library (Button, Card, Badge primitives)
+2. Phase 3 Step 7 — Audio playback component + integrate with lesson pages
+3. Generate new lesson content via Content Agent (see PIPELINE.md)
 
-See PROJECT.md "Build Plan" for the full 17-step sequence.
+See PROJECT.md "Build Plan" for the full step sequence.
 
 ---
 
 ## Active Decisions / Mid-Session Notes
 
-- Tailwind v4 uses `@theme` and `@custom-variant` in CSS — no `tailwind.config.ts` needed.
-- Navbar is a Server Component (no interactivity needed, just links).
+- Tailwind v4: CSS-first config via `@theme` and `@custom-variant` in `globals.css`. No `tailwind.config.ts`.
+- No test setup yet — no Vitest, no test scripts, no test files. Need to install when ready.
+- `scripts/generate-audio.ts` doesn't exist — `pnpm generate-audio` is documented but not yet built.
+- `VocabItem` interface has no `kannada` script field — Numbers lesson needs this eventually.
+- Audio player UI not built yet — lesson pages show `[TODO: audio]` markers.
+- All audio src paths follow `audio/{lessonId}_{slug}.mp3` convention (placeholder paths, files don't exist yet).
 - Used `satisfies` keyword on lesson and vocab arrays for type-safe literals without widening.
-- Audio placeholders marked with `[TODO: audio]` — will be wired up in Step 8.
+- PROJECT.md still references `tailwind.config.ts` in the Colour Palette section — outdated, should reference `globals.css` `@theme` tokens.
 
 ---
 
 ## Files Most Recently Touched
 
-- `src/app/learn/page.tsx` — lesson index (new)
-- `src/app/learn/[lessonId]/page.tsx` — dynamic lesson page (new)
-- `src/app/learn/[lessonId]/not-found.tsx` — 404 page (new)
+- `AGENTS.md` — added `import type` guidance and tsconfig path alias reference
+- `CONTEXT.md` — this file, updated with current session state
 
 ---
 

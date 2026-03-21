@@ -189,6 +189,186 @@ export const yesNoPhrases: Phrase[] = [
   },
 ] satisfies Phrase[];
 
+// --- Numbers 1–10 lesson ---
+// Why: This is the one lesson where Kannada script (೧, ೨, ೩ …) should appear
+// alongside romanised text. The VocabItem interface doesn't have a script field yet —
+// add one when building the dedicated Numbers UI component.
+
+export const numbersOneToTenVocab: VocabItem[] = [
+  {
+    id: "numbers-one-to-ten-ondu",
+    lessonId: "numbers-one-to-ten",
+    romanised: "Ondu",
+    english: "One",
+    audioSrc: "audio/numbers-one-to-ten_ondu.mp3",
+  },
+  {
+    id: "numbers-one-to-ten-yeradu",
+    lessonId: "numbers-one-to-ten",
+    romanised: "Yeradu",
+    english: "Two",
+    audioSrc: "audio/numbers-one-to-ten_yeradu.mp3",
+  },
+  {
+    id: "numbers-one-to-ten-mooru",
+    lessonId: "numbers-one-to-ten",
+    romanised: "Mooru",
+    english: "Three",
+    audioSrc: "audio/numbers-one-to-ten_mooru.mp3",
+  },
+  {
+    id: "numbers-one-to-ten-naalku",
+    lessonId: "numbers-one-to-ten",
+    romanised: "Naalku",
+    english: "Four",
+    audioSrc: "audio/numbers-one-to-ten_naalku.mp3",
+  },
+  {
+    id: "numbers-one-to-ten-aidu",
+    lessonId: "numbers-one-to-ten",
+    romanised: "Aidu",
+    english: "Five",
+    audioSrc: "audio/numbers-one-to-ten_aaidu.mp3",
+  },
+  {
+    id: "numbers-one-to-ten-aaru",
+    lessonId: "numbers-one-to-ten",
+    romanised: "Aaru",
+    english: "Six",
+    audioSrc: "audio/numbers-one-to-ten_aaru.mp3",
+  },
+  {
+    id: "numbers-one-to-ten-yelu",
+    lessonId: "numbers-one-to-ten",
+    romanised: "Yelu",
+    english: "Seven",
+    audioSrc: "audio/numbers-one-to-ten_yelu.mp3",
+  },
+  {
+    id: "numbers-one-to-ten-entu",
+    lessonId: "numbers-one-to-ten",
+    romanised: "Entu",
+    english: "Eight",
+    audioSrc: "audio/numbers-one-to-ten_entu.mp3",
+  },
+  {
+    id: "numbers-one-to-ten-ombattu",
+    lessonId: "numbers-one-to-ten",
+    romanised: "Ombattu",
+    english: "Nine",
+    audioSrc: "audio/numbers-one-to-ten_ombattu.mp3",
+  },
+  {
+    id: "numbers-one-to-ten-hattu",
+    lessonId: "numbers-one-to-ten",
+    romanised: "Hattu",
+    english: "Ten",
+    audioSrc: "audio/numbers-one-to-ten_hattu.mp3",
+  },
+] satisfies VocabItem[];
+
+export const numbersOneToTenPhrases: Phrase[] = [
+  {
+    id: "numbers-one-to-ten-counting",
+    lessonId: "numbers-one-to-ten",
+    romanised: "Ondu, yeradu, mooru!",
+    english: "One, two, three!",
+    audioSrc: "audio/numbers-one-to-ten_counting.mp3",
+  },
+  {
+    id: "numbers-one-to-ten-eshtu",
+    lessonId: "numbers-one-to-ten",
+    romanised: "Eshtu? Aaidu.",
+    english: "How many? Five.",
+    audioSrc: "audio/numbers-one-to-ten_eshtu.mp3",
+  },
+] satisfies Phrase[];
+
+// --- Food & Drink lesson ---
+
+export const foodAndDrinkVocab: VocabItem[] = [
+  {
+    id: "food-and-drink-thindi",
+    lessonId: "food-and-drink",
+    romanised: "Thindi",
+    english: "Snack / tiffin",
+    audioSrc: "audio/food-and-drink_thindi.mp3",
+  },
+  {
+    id: "food-and-drink-ootta",
+    lessonId: "food-and-drink",
+    romanised: "Ootta",
+    english: "Meal / food",
+    audioSrc: "audio/food-and-drink_ootta.mp3",
+  },
+  {
+    id: "food-and-drink-neeru",
+    lessonId: "food-and-drink",
+    romanised: "Neeru",
+    english: "Water",
+    audioSrc: "audio/food-and-drink_neeru.mp3",
+  },
+  {
+    id: "food-and-drink-uppin",
+    lessonId: "food-and-drink",
+    romanised: "Uppin",
+    english: "Salt",
+    audioSrc: "audio/food-and-drink_uppin.mp3",
+  },
+  {
+    id: "food-and-drink-khaasi",
+    lessonId: "food-and-drink",
+    romanised: "Khaasi",
+    english: "Cough / spicy",
+    audioSrc: "audio/food-and-drink_khaasi.mp3",
+  },
+  {
+    id: "food-and-drink-sakkaare",
+    lessonId: "food-and-drink",
+    romanised: "Sakkaare",
+    english: "Sugar",
+    audioSrc: "audio/food-and-drink_sakkaare.mp3",
+  },
+  {
+    id: "food-and-drink-haaki",
+    lessonId: "food-and-drink",
+    romanised: "Haaki",
+    english: "Put / add",
+    audioSrc: "audio/food-and-drink_haaki.mp3",
+  },
+  {
+    id: "food-and-drink-sari-aaythu",
+    lessonId: "food-and-drink",
+    romanised: "Sari aaythu",
+    english: "That's fine / okay then",
+    audioSrc: "audio/food-and-drink_sari-aaythu.mp3",
+  },
+] satisfies VocabItem[];
+
+export const foodAndDrinkPhrases: Phrase[] = [
+  {
+    id: "food-and-drink-ootta-aaytha",
+    lessonId: "food-and-drink",
+    romanised: "Ootta aaytha?",
+    english: "Have you eaten?",
+    audioSrc: "audio/food-and-drink_ootta-aaytha.mp3",
+  },
+  {
+    id: "food-and-drink-coffee-beku",
+    lessonId: "food-and-drink",
+    romanised: "Coffee beku, dayavittu.",
+    english: "I want coffee, please.",
+    audioSrc: "audio/food-and-drink_coffee-beku.mp3",
+  },
+  {
+    id: "food-and-drink-neeru-beku",
+    lessonId: "food-and-drink",
+    romanised: "Neeru beku. Dhanyavaadagalu.",
+    english: "I want water. Thank you.",
+    audioSrc: "audio/food-and-drink_neeru-beku.mp3",
+  },
+] satisfies Phrase[];
+
 // --- Helper: get all vocab for a lesson ---
 
 // LEARN: A plain object maps lessonId → vocab list. This is simpler than a
@@ -197,12 +377,16 @@ const vocabByLesson: Record<string, VocabItem[]> = {
   greetings: greetingsVocab,
   introductions: introductionsVocab,
   "yes-no-maybe": yesNoVocab,
+  "numbers-one-to-ten": numbersOneToTenVocab,
+  "food-and-drink": foodAndDrinkVocab,
 };
 
 const phrasesByLesson: Record<string, Phrase[]> = {
   greetings: greetingsPhrases,
   introductions: introductionsPhrases,
   "yes-no-maybe": yesNoPhrases,
+  "numbers-one-to-ten": numbersOneToTenPhrases,
+  "food-and-drink": foodAndDrinkPhrases,
 };
 
 export function getVocabForLesson(lessonId: string): VocabItem[] {

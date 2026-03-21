@@ -69,6 +69,9 @@ See `PROJECT.md` for goals, milestones, and roadmap.
 
 ### Imports
 - Use the `@/` path alias for all internal imports (e.g. `import { Button } from '@/components/ui/Button'`).
+  Defined in `tsconfig.json` as `"paths": { "@/*": ["./src/*"] }`.
+- Import `type` with the `import type` syntax to keep type-only imports out of the
+  runtime bundle (e.g. `import type { Metadata } from "next"`).
 - Import order (blank line between groups):
   1. React / Next.js
   2. External libraries
