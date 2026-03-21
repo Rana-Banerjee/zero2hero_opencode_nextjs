@@ -8,7 +8,7 @@
 
 ## Status
 
-**Current milestone:** Step 4 complete — ready for Step 5
+**Current milestone:** Step 5 complete — browsable site with lesson content
 **Currently working on:** Phase 2 complete
 **Last updated:** 2026-03-21
 
@@ -23,15 +23,18 @@
 - [X] Phase 1 Step 2 — Root Layout & Dark Theme
 - [X] Phase 2 Step 3 — Route Groups & Navigation
 - [X] Phase 2 Step 4 — Lesson Data Layer
-  - `src/types/lesson.ts` — `Lesson`, `VocabItem`, `Phrase` interfaces, `LessonLevel` union type
-  - `src/data/lessons.ts` — 5 beginner lessons (greetings, introductions, yes/no, numbers, food)
-  - `src/data/vocab.ts` — real romanised Kannada vocab + phrases for 3 lessons, helper functions
+- [X] Phase 2 Step 5 — Dynamic Routes & Lesson Pages
+  - `src/app/learn/page.tsx` — lesson index listing all 5 lessons
+  - `src/app/learn/[lessonId]/page.tsx` — individual lesson with vocab + phrases
+  - `src/app/learn/[lessonId]/not-found.tsx` — 404 for invalid lesson IDs
+  - Uses `generateStaticParams()` for SSG, `notFound()` for missing lessons
+  - Dynamic `generateMetadata()` for per-lesson `<title>`
 
 ---
 
 ## What's Next
 
-Phase 2 complete. Next: Phase 2 Step 5 — Dynamic Routes & Lesson Pages.
+Phase 2 complete — browsable site with lesson content. Next: Phase 3 Step 6 — UI Component Library.
 
 See PROJECT.md "Build Plan" for the full 17-step sequence.
 
@@ -39,20 +42,18 @@ See PROJECT.md "Build Plan" for the full 17-step sequence.
 
 ## Active Decisions / Mid-Session Notes
 
-> Decisions made during a session that aren't yet in PROJECT.md go here temporarily.
-> Move them to PROJECT.md architecture decisions when they're settled.
-
 - Tailwind v4 uses `@theme` and `@custom-variant` in CSS — no `tailwind.config.ts` needed.
 - Navbar is a Server Component (no interactivity needed, just links).
 - Used `satisfies` keyword on lesson and vocab arrays for type-safe literals without widening.
+- Audio placeholders marked with `[TODO: audio]` — will be wired up in Step 8.
 
 ---
 
 ## Files Most Recently Touched
 
-- `src/types/lesson.ts` — `Lesson`, `VocabItem`, `Phrase` interfaces (new)
-- `src/data/lessons.ts` — 5 beginner lessons with real romanised Kannada (new)
-- `src/data/vocab.ts` — vocab + phrases for greetings, introductions, yes/no lessons (new)
+- `src/app/learn/page.tsx` — lesson index (new)
+- `src/app/learn/[lessonId]/page.tsx` — dynamic lesson page (new)
+- `src/app/learn/[lessonId]/not-found.tsx` — 404 page (new)
 
 ---
 
