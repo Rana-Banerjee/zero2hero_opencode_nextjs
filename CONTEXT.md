@@ -8,8 +8,8 @@
 
 ## Status
 
-**Current milestone:** Step 2 complete — ready for Step 3
-**Currently working on:** Phase 1 complete
+**Current milestone:** Step 3 complete — ready for Step 4
+**Currently working on:** Phase 2 complete
 **Last updated:** 2026-03-21
 
 ---
@@ -21,16 +21,17 @@
 - [X] CONTEXT.md — this file
 - [X] Phase 1 Step 1 — Scaffold & Configure
 - [X] Phase 1 Step 2 — Root Layout & Dark Theme
-  - Inter font via `next/font/google`, variable set to `--font-sans`
-  - Body: `bg-zinc-950`, `text-zinc-100`, `font-sans` (uses Inter)
-  - Minimal landing page with brand colours and `next/link`
-  - Removed custom `--color-background`/`--color-foreground` CSS vars (use Tailwind built-ins)
+- [X] Phase 2 Step 3 — Route Groups & Navigation
+  - Moved landing page to `src/app/(marketing)/page.tsx`
+  - Created `src/app/(marketing)/about/page.tsx` with real content
+  - Created `src/components/ui/Navbar.tsx` — shared Navbar with `next/link`
+  - Updated root layout to render Navbar on all pages
 
 ---
 
 ## What's Next
 
-Phase 1 complete. Next: Phase 2 Step 3 — Route Groups & Navigation.
+Phase 2 complete. Next: Phase 2 Step 4 — Lesson Data Layer.
 
 See PROJECT.md "Build Plan" for the full 17-step sequence.
 
@@ -42,15 +43,16 @@ See PROJECT.md "Build Plan" for the full 17-step sequence.
 > Move them to PROJECT.md architecture decisions when they're settled.
 
 - Tailwind v4 uses `@theme` and `@custom-variant` in CSS — no `tailwind.config.ts` needed.
+- Navbar is a Server Component (no interactivity needed, just links).
 
 ---
 
 ## Files Most Recently Touched
 
-- `package.json` — renamed to "kannada-learning", added `typecheck` script
-- `src/app/globals.css` — brand colours, dark mode variant
-- `src/app/layout.tsx` — Inter font, dark class, metadata
-- `src/app/page.tsx` — minimal landing page
+- `src/app/(marketing)/page.tsx` — landing page (moved from `src/app/page.tsx`)
+- `src/app/(marketing)/about/page.tsx` — about page (new)
+- `src/components/ui/Navbar.tsx` — shared Navbar component (new)
+- `src/app/layout.tsx` — imported and rendered Navbar
 
 ---
 

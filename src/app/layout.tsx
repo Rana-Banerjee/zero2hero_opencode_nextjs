@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Navbar } from "@/components/ui/Navbar";
 import "./globals.css";
 
 // LEARN: next/font/google self-hosts fonts — no external requests, zero layout shift.
@@ -24,7 +25,8 @@ export default function RootLayout({
   return (
     // LEARN: dark class on <html> activates dark: Tailwind utilities (class strategy).
     <html lang="en" className={`dark ${inter.variable}`}>
-      <body className="min-h-screen bg-zinc-950 font-sans text-zinc-100 antialiased">
+      <body className="flex min-h-screen flex-col bg-zinc-950 font-sans text-zinc-100 antialiased">
+        <Navbar />
         {children}
       </body>
     </html>

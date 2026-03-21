@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+// LEARN: Route groups (marketing) organise routes without affecting the URL.
+// This page is served at / — the route group folder name is not in the URL.
 // LEARN: This is a React Server Component (RSC) by default — no "use client" needed
 // because it has no interactivity or browser APIs.
 export default function Home() {
