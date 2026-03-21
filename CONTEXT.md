@@ -8,7 +8,7 @@
 
 ## Status
 
-**Current milestone:** Step 3 complete — ready for Step 4
+**Current milestone:** Step 4 complete — ready for Step 5
 **Currently working on:** Phase 2 complete
 **Last updated:** 2026-03-21
 
@@ -22,16 +22,16 @@
 - [X] Phase 1 Step 1 — Scaffold & Configure
 - [X] Phase 1 Step 2 — Root Layout & Dark Theme
 - [X] Phase 2 Step 3 — Route Groups & Navigation
-  - Moved landing page to `src/app/(marketing)/page.tsx`
-  - Created `src/app/(marketing)/about/page.tsx` with real content
-  - Created `src/components/ui/Navbar.tsx` — shared Navbar with `next/link`
-  - Updated root layout to render Navbar on all pages
+- [X] Phase 2 Step 4 — Lesson Data Layer
+  - `src/types/lesson.ts` — `Lesson`, `VocabItem`, `Phrase` interfaces, `LessonLevel` union type
+  - `src/data/lessons.ts` — 5 beginner lessons (greetings, introductions, yes/no, numbers, food)
+  - `src/data/vocab.ts` — real romanised Kannada vocab + phrases for 3 lessons, helper functions
 
 ---
 
 ## What's Next
 
-Phase 2 complete. Next: Phase 2 Step 4 — Lesson Data Layer.
+Phase 2 complete. Next: Phase 2 Step 5 — Dynamic Routes & Lesson Pages.
 
 See PROJECT.md "Build Plan" for the full 17-step sequence.
 
@@ -44,15 +44,15 @@ See PROJECT.md "Build Plan" for the full 17-step sequence.
 
 - Tailwind v4 uses `@theme` and `@custom-variant` in CSS — no `tailwind.config.ts` needed.
 - Navbar is a Server Component (no interactivity needed, just links).
+- Used `satisfies` keyword on lesson and vocab arrays for type-safe literals without widening.
 
 ---
 
 ## Files Most Recently Touched
 
-- `src/app/(marketing)/page.tsx` — landing page (moved from `src/app/page.tsx`)
-- `src/app/(marketing)/about/page.tsx` — about page (new)
-- `src/components/ui/Navbar.tsx` — shared Navbar component (new)
-- `src/app/layout.tsx` — imported and rendered Navbar
+- `src/types/lesson.ts` — `Lesson`, `VocabItem`, `Phrase` interfaces (new)
+- `src/data/lessons.ts` — 5 beginner lessons with real romanised Kannada (new)
+- `src/data/vocab.ts` — vocab + phrases for greetings, introductions, yes/no lessons (new)
 
 ---
 
