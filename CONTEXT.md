@@ -8,25 +8,31 @@
 
 ## Status
 
-**Current milestone:** Project not yet scaffolded
-**Currently working on:** Setting up project documentation
+**Current milestone:** Step 2 complete — ready for Step 3
+**Currently working on:** Phase 1 complete
 **Last updated:** 2026-03-21
 
 ---
 
 ## What's Done
 
-- [X] AGENTS.md — agent behaviour rules and conventions
-- [X] PROJECT.md — goals, milestones, architecture decisions
+- [X] AGENTS.md — agent behaviour rules, code style (imports, naming, error handling)
+- [X] PROJECT.md — goals, milestones, 17-step build plan, architecture decisions, colour palette
 - [X] CONTEXT.md — this file
+- [X] Phase 1 Step 1 — Scaffold & Configure
+- [X] Phase 1 Step 2 — Root Layout & Dark Theme
+  - Inter font via `next/font/google`, variable set to `--font-sans`
+  - Body: `bg-zinc-950`, `text-zinc-100`, `font-sans` (uses Inter)
+  - Minimal landing page with brand colours and `next/link`
+  - Removed custom `--color-background`/`--color-foreground` CSS vars (use Tailwind built-ins)
 
 ---
 
 ## What's Next
 
-1. Scaffold the Next.js project (`npx create-next-app@latest`)
-2. Configure TypeScript strict mode, Tailwind, ESLint
-3. Connect Supabase
+Phase 1 complete. Next: Phase 2 Step 3 — Route Groups & Navigation.
+
+See PROJECT.md "Build Plan" for the full 17-step sequence.
 
 ---
 
@@ -35,13 +41,16 @@
 > Decisions made during a session that aren't yet in PROJECT.md go here temporarily.
 > Move them to PROJECT.md architecture decisions when they're settled.
 
-_Nothing yet._
+- Tailwind v4 uses `@theme` and `@custom-variant` in CSS — no `tailwind.config.ts` needed.
 
 ---
 
 ## Files Most Recently Touched
 
-_Nothing yet._
+- `package.json` — renamed to "kannada-learning", added `typecheck` script
+- `src/app/globals.css` — brand colours, dark mode variant
+- `src/app/layout.tsx` — Inter font, dark class, metadata
+- `src/app/page.tsx` — minimal landing page
 
 ---
 

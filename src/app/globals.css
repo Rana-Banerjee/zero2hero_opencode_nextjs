@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* LEARN: @custom-variant lets you control how dark: utilities work.
+   "class" strategy means dark mode activates when <html> has class="dark". */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* LEARN: @theme defines custom design tokens that Tailwind makes available
+   as utility classes (e.g. bg-brand-yellow, text-brand-deep). */
+@theme inline {
+  --color-brand-yellow: #FFD400;
+  --color-brand-amber: #FFC300;
+  --color-brand-orange: #FF8C00;
+  --color-brand-deep: #FF5F00;
+}
