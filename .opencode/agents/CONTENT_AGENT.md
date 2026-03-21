@@ -109,7 +109,7 @@ Vocab/Phrase ID: `{lessonId}-{word-slug}`
 
 ```ts
 {
-  id: 'directions-straight-hogi',
+  id: 'directions-nere-hogi',
   lessonId: 'directions',
   romanised: 'Nere hogi.',
   english: 'Go straight.',

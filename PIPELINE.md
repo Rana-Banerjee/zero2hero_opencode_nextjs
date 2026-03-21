@@ -9,7 +9,8 @@ so content can be reviewed and corrected before any API calls are made for audio
 Stage 1 — Content Agent (OpenCode)
   Input:  a topic name (e.g. "directions", "shopping", "family")
   Output: updated src/data/lessons.ts and src/data/vocab.ts
-          with [TODO: audio] markers on every audioSrc field
+          with audioSrc paths following the convention
+          audio/{lessonId}_{slug}.mp3
 
 Stage 2 — Audio Script (Node.js)
   Input:  src/data/vocab.ts — reads every audioSrc path
@@ -50,6 +51,11 @@ Add a new lesson on the topic of "directions" following CONTENT_AGENT.md
 ---
 
 ## Stage 2 — Audio Generation Script
+
+> [!NOTE] The script at `scripts/generate-audio.ts` does not exist yet.
+> See setup steps below. The `pnpm generate-audio` command is defined in
+> `package.json` but will fail until the script and Google Cloud credentials
+> are in place.
 
 A Node.js script at `scripts/generate-audio.ts` that reads all `audioSrc` values
 from `src/data/vocab.ts` and generates mp3 files using Google Cloud Text-to-Speech.
@@ -129,7 +135,7 @@ Rules: always lowercase · hyphens within slug · underscore between lessonId an
 4. Check /learn/{lessonId} in the browser
 5. Correct any romanisation or translation issues
 6. pnpm generate-audio                       # generates mp3s for new entries only
-7. Verify audio plays in the browser
+7. Verify audio plays in the browser          # [TODO: audio player not built yet]
 8. Commit: "feat: add {topic} lesson with audio"
 ```
 
@@ -144,7 +150,7 @@ Update this table as you work through topics.
 | greetings          | ✅      | ✅       | ⬜    |
 | introductions      | ✅      | ✅       | ⬜    |
 | yes-no-maybe       | ✅      | ✅       | ⬜    |
-| numbers-1-to-10    | ✅      | ⬜       | ⬜    |
+| numbers-one-to-ten | ✅      | ⬜       | ⬜    |
 | food-and-drink     | ✅      | ⬜       | ⬜    |
 
 Legend: ✅ done · ⬜ pending · 🔄 in progress

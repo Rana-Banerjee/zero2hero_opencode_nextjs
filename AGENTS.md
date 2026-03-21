@@ -41,6 +41,8 @@ See `PROJECT.md` for goals, milestones, and roadmap.
 - Prefer `interface` for object shapes, `type` for unions and utility types.
 - All async Server Actions and API route handlers must have explicit return types.
 - Use Zod for runtime validation of external data (API responses, form inputs).
+- Use `satisfies` on data arrays (e.g. `satisfies VocabItem[]`) for type-safe
+  literals without widening — preserves autocomplete on individual fields.
 
 ### 5. Kannada / Language Domain Rules
 - All lesson content is informal English romanisation — intuitive spellings (e.g.
@@ -113,15 +115,27 @@ public/
 ```
 
 ### Styling
-- Use **Tailwind CSS**. No CSS Modules, no inline `style={}` (except dynamic values).
-- Dark mode from the start (`darkMode: 'class'`).
-- Never use raw hex colours — only brand tokens from `tailwind.config.ts`:
-  `brand-yellow`, `brand-amber`, `brand-orange`, `brand-deep`.
+- Use **Tailwind CSS v4**. No CSS Modules, no inline `style={}` (except dynamic values).
+- Tailwind v4 uses CSS-first config — no `tailwind.config.ts`. Theme tokens are
+  defined in `src/app/globals.css` with `@theme inline { ... }`.
+- Dark mode: `@custom-variant dark (&:where(.dark, .dark *))` in `globals.css`,
+  activated by `class="dark"` on `<html>`.
+- Never use raw hex colours — only brand tokens: `brand-yellow`, `brand-amber`,
+  `brand-orange`, `brand-deep` (e.g. `text-brand-yellow`, `bg-brand-deep`).
 
-### Testing
+### Testing (planned — not yet set up)
 - At least one unit test per utility in `src/lib/`.
-- **Vitest** + **React Testing Library** for component tests.
+- **Vitest** + **React Testing Library** for component tests (to be installed).
 - Test files: `{filename}.test.ts` or `{filename}.test.tsx`, co-located with source.
+- When testing is installed: `pnpm test`, `pnpm test -- <pattern>` for a single file.
+
+### Content Pipeline
+- Lesson content is generated via a two-stage pipeline (see `PIPELINE.md`).
+- **Stage 1**: The Content Agent (`.opencode/agents/CONTENT_AGENT.md`) generates
+  lesson data — new `Lesson`, `VocabItem[]`, and `Phrase[]` entries in `src/data/`.
+- **Stage 2**: `pnpm generate-audio` calls Google Cloud TTS to create mp3 files
+  in `public/audio/`. Skips files that already exist — safe to rerun.
+- Never generate audio before content has been reviewed.
 
 ---
 
@@ -146,7 +160,7 @@ pnpm dev                  # Start development server
 pnpm build                # Production build
 pnpm typecheck            # tsc --noEmit
 pnpm lint                 # ESLint
-pnpm test                 # Run all tests
-pnpm test -- <pattern>    # Run a single test file (e.g. pnpm test -- audio-utils)
-pnpm test -- --watch      # Watch mode
+pnpm generate-audio       # Generate mp3s via Google Cloud TTS (see PIPELINE.md)
+# pnpm test               # Run all tests (planned — not yet configured)
+# pnpm test -- <pattern>  # Run a single test file (planned)
 ```
