@@ -12,10 +12,10 @@ Stage 1 — Content Agent (OpenCode)
           with audioSrc paths following the convention
           audio/{lessonId}_{slug}.mp3
 
-Stage 2 — Audio Script (Node.js)
-  Input:  src/data/vocab.ts — reads every audioSrc path
+Stage 2 — Audio Script (Python)
+  Input:  src/data/vocab.ts — reads kannadaScript and audioSrc
   Output: mp3 files written to public/audio/
-  How:    calls Google Cloud TTS API for Kannada (kn-IN)
+  How:    Python script using gTTS with lang='kn'
           skips files that already exist — safe to rerun
 ```
 
@@ -52,58 +52,37 @@ Add a new lesson on the topic of "directions" following CONTENT_AGENT.md
 
 ## Stage 2 — Audio Generation Script
 
-> [!NOTE] The script at `scripts/generate-audio.ts` does not exist yet.
-> See setup steps below. The `pnpm generate-audio` command is defined in
-> `package.json` but will fail until the script and Google Cloud credentials
-> are in place.
-
-A Node.js script at `scripts/generate-audio.ts` that reads all `audioSrc` values
-from `src/data/vocab.ts` and generates mp3 files using Google Cloud Text-to-Speech.
+A Python script at `scripts/generate_audio.py` that reads `kannadaScript` and
+`audioSrc` from `src/data/vocab.ts` and generates mp3 files using gTTS.
 
 ### Setup (one time)
 
-1. Create a Google Cloud project at https://console.cloud.google.com
-2. Enable the **Cloud Text-to-Speech API**
-3. Create a service account key (JSON) and download it
-4. Add to `.env.local`:
-   ```
-   GOOGLE_APPLICATION_CREDENTIALS=./google-credentials.json
-   ```
-5. Install the client library:
-   ```
-   pnpm add -D @google-cloud/text-to-speech
-   ```
+```bash
+pip install gtts
+```
 
-### Voice settings
+No API key, no billing, no account required.
 
-```ts
-// Kannada, female voice, slightly slower for learners
-const voice = {
-  languageCode: 'kn-IN',
-  name: 'kn-IN-Standard-A',       // female — alternative: 'kn-IN-Standard-B' (male)
-}
-const audioConfig = {
-  audioEncoding: 'MP3',
-  speakingRate: 0.9,               // slightly slower than natural — better for learners
-}
+### Example gTTS usage
+
+```python
+from gtts import gTTS
+tts = gTTS("ನಿನ್ನ ಹೆಸರು ಏನು", lang='kn')
+tts.save("output.mp3")
 ```
 
 ### Running the script
 
 ```bash
-pnpm generate-audio
+python3 scripts/generate_audio.py
 ```
 
 The script:
-1. Reads all `audioSrc` values from `vocab.ts`
+1. Reads `kannadaScript` and `audioSrc` from `src/data/vocab.ts`
 2. Skips any file that already exists in `public/audio/`
-3. For each missing file, calls Google Cloud TTS with the `romanised` text
-4. Writes the mp3 to the correct path in `public/audio/`
+3. For each missing file, calls gTTS with `lang='kn'` and the `kannadaScript` text
+4. Saves the mp3 to the `audioSrc` path under `public/`
 5. Logs a summary: generated / skipped / failed
-
-### Google Cloud TTS free tier
-- 1 million characters/month for Standard voices — free
-- More than enough for this project at any foreseeable scale
 
 ---
 
@@ -134,7 +113,7 @@ Rules: always lowercase · hyphens within slug · underscore between lessonId an
 3. Review generated content in src/data/
 4. Check /learn/{lessonId} in the browser
 5. Correct any romanisation or translation issues
-6. pnpm generate-audio                       # generates mp3s for new entries only
+6. python3 scripts/generate_audio.py         # generates mp3s for new entries only
 7. Verify audio plays in the browser          # [TODO: audio player not built yet]
 8. Commit: "feat: add {topic} lesson with audio"
 ```

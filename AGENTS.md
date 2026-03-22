@@ -47,13 +47,15 @@ See `PROJECT.md` for goals, milestones, and roadmap.
 ### 5. Kannada / Language Domain Rules
 - All lesson content is informal English romanisation — intuitive spellings (e.g.
   "namaskara", "howdu", "illa"). No diacritics, no scholarly notation.
-- Kannada script only for numerals (೧, ೨, ೩ … U+0CE6–U+0CEF). Containing element
-  must have `lang="kn"`. No other `lang="kn"` usage.
+- `kannadaScript` holds accurate Kannada script and is **displayed alongside**
+  romanised text for every lesson, vocab item, and phrase. It helps learners
+  associate the spoken form with the written script.
+- Elements displaying Kannada script must have `lang="kn"`.
 - Audio is the primary learning medium — every vocab item and phrase must have a
   paired audio file or a `[TODO: add audio]` marker.
 - Audio file naming: `{lesson-id}_{phrase-slug}.mp3` — lowercase, hyphens only.
-- Lesson fields: `id`, `title` (English), `romanised`, `level` (beginner |
-  intermediate | advanced), `category`, `audioSrc`.
+- Lesson fields: `id`, `title` (English), `kannadaScript`, `level` (beginner |
+  intermediate | advanced), `category`.
 - Never hardcode lesson content in components — all data lives in `src/data/` or
   is fetched from an API route.
 
@@ -81,7 +83,9 @@ See `PROJECT.md` for goals, milestones, and roadmap.
   `error.tsx`, and `not-found.tsx` (Next.js convention).
 
 ### Naming
-- **Components**: PascalCase files and exports (`LessonCard`, `AudioPlayer`).
+- **Components**: PascalCase exports (`LessonCard`, `AudioPlayer`). Shared UI
+  components in `src/components/ui/` may use PascalCase filenames (e.g.
+  `Navbar.tsx`) since they are imported by name. All other files use kebab-case.
 - **Functions / hooks**: camelCase (`formatDuration`, `useAudioPlayback`).
 - **Files / folders**: kebab-case (`lesson-card.tsx`, `src/lib/audio-utils.ts`).
 - **Constants**: SCREAMING_SNAKE_CASE (`MAX_LESSON_DURATION`).
@@ -136,8 +140,8 @@ public/
 - Lesson content is generated via a two-stage pipeline (see `PIPELINE.md`).
 - **Stage 1**: The Content Agent (`.opencode/agents/CONTENT_AGENT.md`) generates
   lesson data — new `Lesson`, `VocabItem[]`, and `Phrase[]` entries in `src/data/`.
-- **Stage 2**: `pnpm generate-audio` calls Google Cloud TTS to create mp3 files
-  in `public/audio/`. Skips files that already exist — safe to rerun.
+- **Stage 2**: A Python script (`scripts/generate_audio.py`) uses gTTS to create
+  mp3 files in `public/audio/` from `kannadaScript` text. Skips existing files.
 - Never generate audio before content has been reviewed.
 
 ---
@@ -161,9 +165,10 @@ public/
 ```bash
 pnpm dev                  # Start development server
 pnpm build                # Production build
+pnpm start                # Run production build locally
 pnpm typecheck            # tsc --noEmit
 pnpm lint                 # ESLint
-pnpm generate-audio       # Generate mp3s via Google Cloud TTS (see PIPELINE.md)
+python3 scripts/generate_audio.py  # Generate mp3s via gTTS (see PIPELINE.md)
 # pnpm test               # Run all tests (planned — not yet configured)
 # pnpm test -- <pattern>  # Run a single test file (planned)
 ```

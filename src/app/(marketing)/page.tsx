@@ -12,8 +12,8 @@ export default function Home() {
       </h1>
 
       <p className="max-w-md text-lg leading-8 text-zinc-400">
-        Learn spoken Kannada through audio-first lessons. No script memorisation
-        — just speak.
+        Learn spoken Kannada through audio-first lessons with Kannada script
+        alongside — just speak and recognise.
       </p>
 
       {/* LEARN: next/link prefetches routes on hover for instant client-side nav. */}

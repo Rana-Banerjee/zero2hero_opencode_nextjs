@@ -11,6 +11,7 @@ export const lessons: Lesson[] = [
   {
     id: "greetings",
     title: "Greetings",
+    kannadaScript: "ನಮಸ್ಕಾರ",
     description:
       "The essential phrases for saying hello, goodbye, and being polite.",
     level: "beginner",
@@ -19,6 +20,7 @@ export const lessons: Lesson[] = [
   {
     id: "introductions",
     title: "Introductions",
+    kannadaScript: "ಪರಿಚಯ",
     description:
       "How to introduce yourself, ask someone's name, and say where you're from.",
     level: "beginner",
@@ -27,6 +29,7 @@ export const lessons: Lesson[] = [
   {
     id: "yes-no-maybe",
     title: "Yes, No & Maybe",
+    kannadaScript: "ಹೌದು, ಇಲ್ಲ & ಬಹುಶಃ",
     description:
       "The short words that power every conversation — agreement, refusal, and uncertainty.",
     level: "beginner",
@@ -35,14 +38,16 @@ export const lessons: Lesson[] = [
   {
     id: "numbers-one-to-ten",
     title: "Numbers 1–10",
+    kannadaScript: "ಸಂಖ್ಯೆ ೧–೧೦",
     description:
-      "Count from one to ten in Kannada. The one place where Kannada script appears too.",
+      "Count from one to ten in Kannada.",
     level: "beginner",
     category: "numbers",
   },
   {
     id: "food-and-drink",
     title: "Food & Drink",
+    kannadaScript: "ಊಟ & ಪಾನೀಯ",
     description:
       "Order a meal, ask for water, and say what you like to eat.",
     level: "beginner",

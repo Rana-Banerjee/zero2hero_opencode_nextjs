@@ -69,6 +69,10 @@ export default async function LessonPage({
       <h1 className="text-4xl font-bold tracking-tight text-brand-yellow">
         {lesson.title}
       </h1>
+      {/* LEARN: lang="kn" tells browsers/screen readers this is Kannada text. */}
+      <p className="mt-1 text-2xl text-zinc-500" lang="kn">
+        {lesson.kannadaScript}
+      </p>
       <p className="mt-3 text-lg text-zinc-400">{lesson.description}</p>
 
       {/* Vocab section */}
@@ -84,10 +88,15 @@ export default async function LessonPage({
                 className="flex items-baseline justify-between rounded-lg border border-zinc-800 bg-zinc-900/50 p-4"
               >
                 <div>
-                  <span className="text-lg font-medium text-zinc-100">
-                    {item.romanised}
-                  </span>
-                  <span className="ml-3 text-sm text-zinc-500">
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-lg font-medium text-zinc-100">
+                      {item.romanised}
+                    </span>
+                    <span className="text-lg text-zinc-400" lang="kn">
+                      {item.kannadaScript}
+                    </span>
+                  </div>
+                  <span className="text-sm text-zinc-500">
                     {item.english}
                   </span>
                 </div>
@@ -111,6 +120,9 @@ export default async function LessonPage({
               >
                 <p className="text-lg font-medium text-zinc-100">
                   {item.romanised}
+                </p>
+                <p className="mt-1 text-lg text-zinc-400" lang="kn">
+                  {item.kannadaScript}
                 </p>
                 <p className="mt-1 text-sm text-zinc-500">{item.english}</p>
                 {/* TODO: add audio playback button */}

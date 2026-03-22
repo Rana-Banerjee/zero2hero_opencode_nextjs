@@ -31,9 +31,9 @@ export default function AboutPage() {
         </p>
 
         <p>
-          Kannada script (ಕನ್ನಡ) appears only for numerals, where the visual
-          pairing helps recognition. The rest of the time, your ears and mouth
-          do the work.
+          Kannada script (ಕನ್ನಡ) is displayed alongside every romanised word and
+          phrase. This helps you start recognising the written form while you
+          focus on speaking.
         </p>
 
         <h2 className="mt-10 text-2xl font-semibold text-brand-amber">

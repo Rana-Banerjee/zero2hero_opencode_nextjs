@@ -4,7 +4,7 @@
 
 This project has three interrelated goals, all equally important:
 
-1. **Build** a spoken Kannada learning website for English speakers — romanised content and audio-first, with Kannada script used only for numerals
+1. **Build** a spoken Kannada learning website for English speakers — romanised content and audio-first, with Kannada script displayed alongside for visual association
 2. **Learn** Next.js and TypeScript through hands-on construction
 3. **Learn** how to work effectively with AI coding agents (OpenCode)
 
@@ -16,10 +16,10 @@ feature built is a real Next.js/TypeScript lesson in disguise.
 ## Milestones
 
 - [ ] Project scaffold — App Router, TypeScript strict mode, Tailwind, Supabase connection
-- [ ] First lesson page — romanised Kannada phrases, basic layout
+- [ ] First lesson page — romanised Kannada phrases with Kannada script, basic layout
 - [ ] Audio playback — every vocabulary item and phrase has a paired audio file
-- [ ] Numbers lesson — the one place Kannada numeral script (೧ ೨ ೩) appears alongside Roman
-- [ ] AI content pipeline — Stage 1: Content Agent generates lessons/vocab · Stage 2: audio script generates mp3s via Google Cloud TTS (see PIPELINE.md)
+- [ ] Numbers lesson — counting, with Kannada script for all numbers
+- [ ] AI content pipeline — Stage 1: Content Agent generates lessons/vocab · Stage 2: audio script generates mp3s via gTTS (see PIPELINE.md)
 - [ ] Spaced-repetition quiz component
 - [ ] Progress tracking via Supabase
 - [ ] User authentication via Supabase Auth
@@ -39,10 +39,10 @@ feature built is a real Next.js/TypeScript lesson in disguise.
 | — | Tailwind CSS | Utility-first; good fit for component-based UI |
 | — | Vitest + RTL | Lightweight, Vite-native testing |
 | — | Spoken Kannada only | Lowers barrier to entry; script is a separate skill from speech |
-| — | Kannada script for numerals only | Numbers have a natural visual pairing; all other content is romanised |
+| — | Kannada script displayed alongside romanised | Helps learners associate spoken form with written script |
 | — | Supabase | Managed Postgres with built-in auth; good Next.js integration |
 | — | AI-generated lesson content | Scalable; requires a dedicated content pipeline (see PIPELINE.md) |
-| — | Google Cloud TTS for audio | Free tier (1M chars/month); best Kannada (kn-IN) quality among free options |
+| — | gTTS (Python) for audio generation | Free, no billing; uses Kannada script as input which ensures correct pronunciation |
 | — | Two-stage content pipeline | Separates content review from audio generation; avoids wasted API calls |
 | — | Absolute beginners only (initially) | Keeps scope tight; no multi-level complexity at the start |
 | — | Informal romanisation | Intuitive for English speakers; no diacritics or scholarly notation |

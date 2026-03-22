@@ -10,6 +10,7 @@ export type LessonLevel = "beginner" | "intermediate" | "advanced";
 export interface Lesson {
   id: string;
   title: string;
+  kannadaScript: string; // displayed alongside title for visual association
   description: string;
   level: LessonLevel;
   category: string;
@@ -20,6 +21,7 @@ export interface VocabItem {
   id: string;
   lessonId: string;
   romanised: string;
+  kannadaScript: string; // displayed alongside romanised text
   english: string;
   audioSrc: string; // path relative to /public/audio/
 }
@@ -29,6 +31,7 @@ export interface Phrase {
   id: string;
   lessonId: string;
   romanised: string;
+  kannadaScript: string; // displayed alongside romanised text
   english: string;
   audioSrc: string;
 }

@@ -64,6 +64,13 @@ Do not create new files. All content goes into the existing data files.
 - Do NOT leave audioSrc empty — always populate with the correct path even though
   the file does not exist yet. The audio script will generate the file.
 
+### Kannada script
+- Always populate `kannadaScript` with the accurate Kannada script representation
+  of the `romanised` field
+- `kannadaScript` is used exclusively for gTTS audio generation — it is **never**
+  displayed or rendered to the learner in any component
+- `romanised` and `kannadaScript` must correspond to the same word or phrase
+
 ---
 
 ## ID conventions
@@ -100,6 +107,7 @@ Vocab/Phrase ID: `{lessonId}-{word-slug}`
   id: 'directions-edakke',
   lessonId: 'directions',
   romanised: 'Edakke',
+  kannadaScript: 'ಎಡಕ್ಕೆ',
   english: 'Left',
   audioSrc: 'audio/directions_edakke.mp3',
 }
@@ -112,6 +120,7 @@ Vocab/Phrase ID: `{lessonId}-{word-slug}`
   id: 'directions-nere-hogi',
   lessonId: 'directions',
   romanised: 'Nere hogi.',
+  kannadaScript: 'ನೇರೆ ಹೋಗಿ.',
   english: 'Go straight.',
   audioSrc: 'audio/directions_nere-hogi.mp3',
 }
@@ -143,7 +152,8 @@ const phrasesByLesson: Record<string, Phrase[]> = {
 - Do not change the structure of existing lessons or vocab
 - Do not use `any` types
 - Do not add intermediate or advanced content — this app targets absolute beginners only
-- Do not use Kannada script anywhere except numerals (handled in a separate lesson)
+- Do not use Kannada script in any rendered content — romanised text only for learners
+- `kannadaScript` field is for data/Audio generation only, never displayed
 - Do not hardcode content inside components — all content lives in `src/data/`
 - Do not leave `audioSrc` empty or as a placeholder string like `""`
 
