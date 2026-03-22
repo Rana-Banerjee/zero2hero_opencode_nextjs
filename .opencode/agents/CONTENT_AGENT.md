@@ -19,6 +19,7 @@ Also read before starting:
 ## What you will be given
 
 A topic name and a format. Examples:
+
 - "directions" format: phrases
 - "auto-driver" format: conversation
 - "greetings" format: mcq
@@ -30,6 +31,7 @@ A topic name and a format. Examples:
 Depending on the format, produce these items in order:
 
 **For all formats:**
+
 1. A new `Lesson` object added to the `lessons` array in `src/data/lessons.ts`
 2. A new `VocabItem[]` array in `src/data/vocab.ts`
 3. The lesson ID added to the `vocabByLesson` lookup map
@@ -215,12 +217,8 @@ const mcqByLesson: Record<string, McqQuestion[]> = {
 
 ## After generating content
 
-Tell the developer:
-
-1. Which lesson ID was created
-2. How many vocab items and phrases were added
-3. Any words you flagged with `# VERIFY` and why
-4. The URL to check: `/learn/{lessonId}`
-
-Then stop. Do not run `pnpm dev`, do not generate audio — the developer reviews
-content first before Stage 2 of the pipeline runs.
+1. Tell the developer which lesson ID was created, how many vocab items
+   and phrases were added, and the URL to check: `/learn/{lessonId}`
+2. Run: python scripts/generate_audio.py
+3. Report the generated / skipped / failed summary from the script output
+4. Then stop — do not run pnpm dev
