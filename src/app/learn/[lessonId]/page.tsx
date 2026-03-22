@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { lessons, getLessonById } from "@/data/lessons";
 import { getVocabForLesson, getPhrasesForLesson } from "@/data/vocab";
+import { AudioPlayer } from "@/components/ui/AudioPlayer";
 
 // LEARN: generateStaticParams tells Next.js which dynamic routes to pre-render
 // at build time (Static Site Generation). Without this, every request would
@@ -100,8 +101,7 @@ export default async function LessonPage({
                     {item.english}
                   </span>
                 </div>
-                {/* TODO: add audio playback button */}
-                <span className="text-xs text-zinc-600">[TODO: audio]</span>
+                <AudioPlayer src={item.audioSrc} label={item.romanised} />
               </li>
             ))}
           </ul>
@@ -125,10 +125,7 @@ export default async function LessonPage({
                   {item.kannadaScript}
                 </p>
                 <p className="mt-1 text-sm text-zinc-500">{item.english}</p>
-                {/* TODO: add audio playback button */}
-                <span className="mt-2 inline-block text-xs text-zinc-600">
-                  [TODO: audio]
-                </span>
+                <AudioPlayer src={item.audioSrc} label={item.romanised} />
               </li>
             ))}
           </ul>

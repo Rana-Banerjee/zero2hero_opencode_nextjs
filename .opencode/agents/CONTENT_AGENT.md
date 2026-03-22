@@ -6,6 +6,7 @@ This file instructs the OpenCode agent on how to generate new lesson content
 for the Kannada learning website. Read this file fully before generating any content.
 
 Also read before starting:
+
 - `AGENTS.md` — coding conventions and behaviour rules
 - `src/types/lesson.ts` — the TypeScript interfaces you must satisfy
 - `src/data/lessons.ts` — existing lessons to follow as examples
@@ -35,6 +36,7 @@ Do not create new files. All content goes into the existing data files.
 ## Lesson content rules
 
 ### Romanisation
+
 - Use informal, intuitive English romanisation — spell words as an English speaker
   would naturally read them aloud
 - No diacritics (no ā, ī, ū, ṭ, ṇ etc.)
@@ -44,10 +46,12 @@ Do not create new files. All content goes into the existing data files.
 - When uncertain between two spellings, choose the one that looks most natural in English
 
 ### Vocabulary count
+
 - 6–10 vocab items per lesson — enough to be useful, not overwhelming for a beginner
 - 2–4 phrases per lesson — full sentences that use the vocab naturally
 
 ### Content quality
+
 - Every vocab item must be genuinely useful for a beginner in a real conversation
 - Phrases must feel natural, not textbook-stiff
 - English translations must be accurate and idiomatic — not word-for-word literal
@@ -55,6 +59,7 @@ Do not create new files. All content goes into the existing data files.
   `# VERIFY: unsure about this word` comment and use your best known alternative
 
 ### Audio sources
+
 - Set every `audioSrc` field to the correct path following the convention:
   `audio/{lessonId}_{slug}.mp3`
 - The slug is derived from the romanised text: lowercase, spaces to hyphens,
@@ -65,10 +70,10 @@ Do not create new files. All content goes into the existing data files.
   the file does not exist yet. The audio script will generate the file.
 
 ### Kannada script
+
 - Always populate `kannadaScript` with the accurate Kannada script representation
   of the `romanised` field
-- `kannadaScript` is used exclusively for gTTS audio generation — it is **never**
-  displayed or rendered to the learner in any component
+- `kannadaScript` is used for gTTS audio generation also
 - `romanised` and `kannadaScript` must correspond to the same word or phrase
 
 ---
@@ -76,11 +81,13 @@ Do not create new files. All content goes into the existing data files.
 ## ID conventions
 
 Lesson ID: `{topic-slug}` — lowercase, hyphens, no spaces
+
 - "Directions" → `directions`
 - "Food & Drink" → `food-and-drink`
 - "At the Market" → `at-the-market`
 
 Vocab/Phrase ID: `{lessonId}-{word-slug}`
+
 - `directions-edakke`
 - `directions-hogi-straight`
 
@@ -152,8 +159,6 @@ const phrasesByLesson: Record<string, Phrase[]> = {
 - Do not change the structure of existing lessons or vocab
 - Do not use `any` types
 - Do not add intermediate or advanced content — this app targets absolute beginners only
-- Do not use Kannada script in any rendered content — romanised text only for learners
-- `kannadaScript` field is for data/Audio generation only, never displayed
 - Do not hardcode content inside components — all content lives in `src/data/`
 - Do not leave `audioSrc` empty or as a placeholder string like `""`
 
@@ -162,6 +167,7 @@ const phrasesByLesson: Record<string, Phrase[]> = {
 ## After generating content
 
 Tell the developer:
+
 1. Which lesson ID was created
 2. How many vocab items and phrases were added
 3. Any words you flagged with `# VERIFY` and why
