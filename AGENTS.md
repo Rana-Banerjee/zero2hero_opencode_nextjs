@@ -2,10 +2,10 @@
 
 ## Context
 
-This is a **spoken Kannada** learning app for English speakers, built with Next.js 14+
-and TypeScript. All content is in English romanisation — Kannada script is used only
-for numerals. The developer is learning Next.js, TypeScript, and OpenCode alongside
-building it — so **clarity and pedagogy matter as much as correctness**.
+This is a **spoken Kannada** learning app for English speakers, built with Next.js 16+
+and TypeScript. All content is in English romanisation with Kannada script displayed
+alongside for visual association. The developer is learning Next.js, TypeScript, and
+OpenCode alongside building it — so **clarity and pedagogy matter as much as correctness**.
 
 See `PROJECT.md` for goals, milestones, and roadmap.
 
@@ -55,7 +55,9 @@ See `PROJECT.md` for goals, milestones, and roadmap.
   paired audio file or a `[TODO: add audio]` marker.
 - Audio file naming: `{lesson-id}_{phrase-slug}.mp3` — lowercase, hyphens only.
 - Lesson fields: `id`, `title` (English), `kannadaScript`, `level` (beginner |
-  intermediate | advanced), `category`.
+  intermediate | advanced), `format`, `category`.
+- Lesson formats: `"phrases"` (vocab + standalone phrases), `"conversation"` (vocab +
+  speaker-attributed dialogue), `"mcq"` (vocab + multiple-choice quiz).
 - Never hardcode lesson content in components — all data lives in `src/data/` or
   is fetched from an API route.
 
@@ -139,8 +141,9 @@ public/
 ### Content Pipeline
 - Lesson content is generated via a two-stage pipeline (see `PIPELINE.md`).
 - **Stage 1**: The Content Agent (`.opencode/agents/CONTENT_AGENT.md`) generates
-  lesson data — new `Lesson`, `VocabItem[]`, and `Phrase[]` entries in `src/data/`.
-- **Stage 2**: A Python script (`scripts/generate_audio.py`) uses gTTS to create
+  lesson data — new entries in `src/data/lessons.ts`, `src/data/vocab.ts`,
+  `src/data/phrases.ts`, or `src/data/mcq.ts` depending on the lesson format.
+- **Stage 2**: A Python script (`tools/generate_audio.py`) uses gTTS to create
   mp3 files in `public/audio/` from `kannadaScript` text. Skips existing files.
 - Never generate audio before content has been reviewed.
 
@@ -168,7 +171,7 @@ pnpm build                # Production build
 pnpm start                # Run production build locally
 pnpm typecheck            # tsc --noEmit
 pnpm lint                 # ESLint
-python3 scripts/generate_audio.py  # Generate mp3s via gTTS (see PIPELINE.md)
+python3 tools/generate_audio.py  # Generate mp3s via gTTS (see PIPELINE.md)
 # pnpm test               # Run all tests (planned — not yet configured)
 # pnpm test -- <pattern>  # Run a single test file (planned)
 ```

@@ -8,9 +8,9 @@
 
 ## Status
 
-**Current milestone:** Phase 2 complete — browsable site with lesson content
-**Currently working on:** AGENTS.md review + minor improvements
-**Last updated:** 2026-03-21
+**Current milestone:** Lesson format system with filtering implemented
+**Currently working on:** Multi-format architecture (phrases / conversation / MCQ) with level × format filtering
+**Last updated:** 2026-03-22
 
 ---
 
@@ -23,58 +23,76 @@
 - [X] Phase 2 Step 4 — Lesson Data Layer
 - [X] Phase 2 Step 5 — Dynamic Routes & Lesson Pages
 
-### Documentation (previous sessions)
-- [X] AGENTS.md — Tailwind v4, testing marked "planned", Content Pipeline, `satisfies` pattern
-- [X] PIPELINE.md — audioSrc fixes, lesson ID fix, table alignment
-- [X] CONTENT_AGENT.md — phrase ID fix
+### Audio Playback
+- [X] AudioPlayer client component (play/pause with SVG icons)
+- [X] Audio playback on lesson pages for vocab and phrases
 
-### New Lesson Content (previous sessions)
-- [X] Food & Drink lesson (`food-and-drink`) — 8 vocab, 3 phrases
-- [X] Numbers 1–10 lesson (`numbers-one-to-ten`) — 10 vocab, 2 phrases
+### Kannada Script Display
+- [X] `kannadaScript` displayed alongside romanised text on all lesson pages
+- [X] `kannadaScript` added to Lesson type and all lesson data
+- [X] `lang="kn"` on all elements displaying Kannada script
 
-### This Session — AGENTS.md Review
-- [X] Reviewed full codebase against AGENTS.md for accuracy
-- [X] Added `import type` syntax guidance to Imports section
-- [X] Added tsconfig.json path alias reference (`@/*` → `./src/*`)
-- [X] Confirmed no Cursor rules or Copilot instructions exist
-- [X] Verified all Key Commands match `package.json` scripts
+### Lesson Format System
+- [X] `LessonFormat` type: "phrases" | "conversation" | "mcq"
+- [X] `format` field added to Lesson interface and all lesson data
+- [X] `McqOption` and `McqQuestion` types
+- [X] `speaker?` optional field on Phrase (for conversation format)
+- [X] Split vocab.ts into vocab.ts + phrases.ts
+- [X] Created mcq.ts with sample MCQ data (greetings, yes/no quizzes)
+- [X] `getLessonsByFilter(level?, format?)` helper in lessons.ts
+
+### Components
+- [X] `VocabSection` — extracted, shared across all formats
+- [X] `PhrasesSection` — standalone phrases rendering
+- [X] `ConversationSection` — chat-style with speaker badges + turn numbers
+- [X] `McqSection` — interactive quiz with answer checking (use client)
+- [X] `FilterBar` — reusable filter pill row (Server Component)
+- [X] `AudioPlayer` — play/pause button component
+
+### Filtering
+- [X] `/learn` page with URL-based filtering via searchParams
+- [X] Two filter bars: Level (All/Beginner/Intermediate/Advanced) + Format (Phrases/Conversation/MCQ)
+- [X] Default format: "phrases"
+- [X] Lesson cards show both level and format badges
 
 ### Existing Lessons
-- `greetings` — 8 vocab, 3 phrases
-- `introductions` — 7 vocab, 3 phrases
-- `yes-no-maybe` — 8 vocab, 3 phrases
-- `numbers-one-to-ten` — 10 vocab, 2 phrases
-- `food-and-drink` — 8 vocab, 3 phrases
+- `greetings` — beginner, phrases — 6 vocab, 2 phrases
+- `introductions` — beginner, phrases — 6 vocab, 1 phrase
+- `yes-no-maybe` — beginner, phrases — 6 vocab, 2 phrases
+- `numbers-one-to-ten` — beginner, phrases — 10 vocab, 2 phrases
+- `food-and-drink` — beginner, phrases — 8 vocab, 3 phrases
+- `greetings-mcq` — beginner, mcq — 6 vocab, 4 questions
+- `yes-no-maybe-mcq` — beginner, mcq — 6 vocab, 2 questions
+- `auto-driver` — intermediate, conversation — 10 vocab, 12 dialogue turns
+- `house-help` — intermediate, conversation — 10 vocab, 12 dialogue turns
+
+### Docs Updated
+- [X] AGENTS.md — format system, content pipeline
+- [X] PROJECT.md — milestones, architecture decisions
+- [X] PIPELINE.md — multi-file data structure
+- [X] CONTENT_AGENT.md — format-aware generation instructions
 
 ---
 
 ## What's Next
 
-1. Phase 3 Step 6 — UI Component Library (Button, Card, Badge primitives)
-2. Phase 3 Step 7 — Audio playback component + integrate with lesson pages
-3. Generate new lesson content via Content Agent (see PIPELINE.md)
-
-See PROJECT.md "Build Plan" for the full step sequence.
-
----
-
-## Active Decisions / Mid-Session Notes
-
-- Tailwind v4: CSS-first config via `@theme` and `@custom-variant` in `globals.css`. No `tailwind.config.ts`.
-- No test setup yet — no Vitest, no test scripts, no test files. Need to install when ready.
-- `scripts/generate-audio.ts` doesn't exist — `pnpm generate-audio` is documented but not yet built.
-- `VocabItem` interface has no `kannada` script field — Numbers lesson needs this eventually.
-- Audio player UI not built yet — lesson pages show `[TODO: audio]` markers.
-- All audio src paths follow `audio/{lessonId}_{slug}.mp3` convention (placeholder paths, files don't exist yet).
-- Used `satisfies` keyword on lesson and vocab arrays for type-safe literals without widening.
-- PROJECT.md still references `tailwind.config.ts` in the Colour Palette section — outdated, should reference `globals.css` `@theme` tokens.
+1. Create conversation lesson content (auto driver, fruit vendor, house help)
+2. Intermediate lessons with conversation format
+3. Generate audio for MCQ questions and new content
+4. Phase 3 Step 6 — UI Component Library (Button, Card, Badge primitives)
+5. Progress tracking via Supabase
 
 ---
 
-## Files Most Recently Touched
+## Architecture Notes
 
-- `AGENTS.md` — added `import type` guidance and tsconfig path alias reference
-- `CONTEXT.md` — this file, updated with current session state
+- Each lesson has exactly one `format` — the detail page switches renderer based on it
+- Vocab section appears on ALL formats
+- Data files are split by content type: vocab.ts, phrases.ts, mcq.ts
+- Filter state lives in URL (`?level=beginner&format=phrases`) — no client state
+- McqSection is the only `"use client"` lesson component (tracks selected answers)
+- `ConversationSection` reuses Phrase type with optional `speaker` field
+- `pnpm typecheck` and `pnpm lint` both pass clean
 
 ---
 

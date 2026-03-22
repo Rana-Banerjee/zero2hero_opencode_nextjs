@@ -19,8 +19,10 @@ feature built is a real Next.js/TypeScript lesson in disguise.
 - [ ] First lesson page — romanised Kannada phrases with Kannada script, basic layout
 - [ ] Audio playback — every vocabulary item and phrase has a paired audio file
 - [ ] Numbers lesson — counting, with Kannada script for all numbers
+- [ ] Lesson format system — phrases, conversation, and MCQ formats with level filtering
+- [ ] Conversation lessons — auto driver, fruit vendor, house help dialogues
+- [ ] MCQ quiz lessons — interactive multiple-choice with answer checking
 - [ ] AI content pipeline — Stage 1: Content Agent generates lessons/vocab · Stage 2: audio script generates mp3s via gTTS (see PIPELINE.md)
-- [ ] Spaced-repetition quiz component
 - [ ] Progress tracking via Supabase
 - [ ] User authentication via Supabase Auth
 - [ ] Deployed to Vercel
@@ -40,17 +42,20 @@ feature built is a real Next.js/TypeScript lesson in disguise.
 | — | Vitest + RTL | Lightweight, Vite-native testing |
 | — | Spoken Kannada only | Lowers barrier to entry; script is a separate skill from speech |
 | — | Kannada script displayed alongside romanised | Helps learners associate spoken form with written script |
+| — | Lesson format system (phrases / conversation / MCQ) | Scalable — new formats can be added without changing the lesson model |
+| — | Two-axis filtering: level × format | Independent filters; default to "phrases" format |
+| — | Phrase.speaker optional field for conversations | Extends existing type without breaking beginner lessons |
+| — | URL-based filter state (searchParams) | Bookmarkable, works with Server Components, no client state needed |
 | — | Supabase | Managed Postgres with built-in auth; good Next.js integration |
 | — | AI-generated lesson content | Scalable; requires a dedicated content pipeline (see PIPELINE.md) |
 | — | gTTS (Python) for audio generation | Free, no billing; uses Kannada script as input which ensures correct pronunciation |
 | — | Two-stage content pipeline | Separates content review from audio generation; avoids wasted API calls |
-| — | Absolute beginners only (initially) | Keeps scope tight; no multi-level complexity at the start |
 | — | Informal romanisation | Intuitive for English speakers; no diacritics or scholarly notation |
 | — | Colour palette: #FFD400 → #FF5F00 | Warm yellow-to-orange ramp; energetic and distinctive |
 
 ### Colour Palette
 
-Define these as custom tokens in `tailwind.config.ts`. Never use raw hex values in components.
+Define these as custom tokens in `src/app/globals.css` with `@theme inline { ... }`. Never use raw hex values in components.
 
 | Token name     | Hex       | Role                   |
 |----------------|-----------|------------------------|

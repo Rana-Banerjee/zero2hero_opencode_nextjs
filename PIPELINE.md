@@ -7,8 +7,11 @@ so content can be reviewed and corrected before any API calls are made for audio
 
 ```
 Stage 1 — Content Agent (OpenCode)
-  Input:  a topic name (e.g. "directions", "shopping", "family")
-  Output: updated src/data/lessons.ts and src/data/vocab.ts
+  Input:  a topic name + format (e.g. "directions" phrases, "auto-driver" conversation)
+  Output: updated src/data/lessons.ts and one of:
+          - src/data/vocab.ts    (for VocabItem[])
+          - src/data/phrases.ts  (for Phrase[])
+          - src/data/mcq.ts      (for McqQuestion[])
           with audioSrc paths following the convention
           audio/{lessonId}_{slug}.mp3
 
@@ -36,9 +39,12 @@ Add a new lesson on the topic of "directions" following CONTENT_AGENT.md
 ```
 
 **What it produces:**
-- A new entry in the `lessons` array in `src/data/lessons.ts`
-- A new `VocabItem[]` and `Phrase[]` array in `src/data/vocab.ts`
-- The lesson ID added to `vocabByLesson` and `phrasesByLesson` lookup maps
+- A new entry in the `lessons` array in `src/data/lessons.ts` (with `format` field)
+- Content in the appropriate data file based on format:
+  - `src/data/vocab.ts` — VocabItem[] (all formats include vocab)
+  - `src/data/phrases.ts` — Phrase[] (for "phrases" and "conversation" formats)
+  - `src/data/mcq.ts` — McqQuestion[] (for "mcq" format)
+- The lesson ID added to the corresponding lookup map
 - All `audioSrc` fields set to the correct path convention
 
 **Review checklist before running Stage 2:**
@@ -52,8 +58,9 @@ Add a new lesson on the topic of "directions" following CONTENT_AGENT.md
 
 ## Stage 2 — Audio Generation Script
 
-A Python script at `scripts/generate_audio.py` that reads `kannadaScript` and
-`audioSrc` from `src/data/vocab.ts` and generates mp3 files using gTTS.
+A Python script at `tools/generate_audio.py` that reads `kannadaScript` and
+`audioSrc` from all data files (`vocab.ts`, `phrases.ts`, `mcq.ts`) and generates
+mp3 files using gTTS.
 
 ### Setup (one time)
 
@@ -74,12 +81,13 @@ tts.save("output.mp3")
 ### Running the script
 
 ```bash
-python3 scripts/generate_audio.py
+python3 tools/generate_audio.py
 ```
 
 The script:
-1. Reads `kannadaScript` and `audioSrc` from `src/data/vocab.ts`
-2. Skips any file that already exists in `public/audio/`
+1. Reads `kannadaScript` and `audioSrc` from `src/data/vocab.ts`, `src/data/phrases.ts`, and `src/data/mcq.ts`
+2. Deduplicates by audioSrc across all files
+3. Skips any file that already exists in `public/audio/`
 3. For each missing file, calls gTTS with `lang='kn'` and the `kannadaScript` text
 4. Saves the mp3 to the `audioSrc` path under `public/`
 5. Logs a summary: generated / skipped / failed
@@ -113,7 +121,7 @@ Rules: always lowercase · hyphens within slug · underscore between lessonId an
 3. Review generated content in src/data/
 4. Check /learn/{lessonId} in the browser
 5. Correct any romanisation or translation issues
-6. python3 scripts/generate_audio.py         # generates mp3s for new entries only
+6. python3 tools/generate_audio.py         # generates mp3s for new entries only
 7. Verify audio plays in the browser          # [TODO: audio player not built yet]
 8. Commit: "feat: add {topic} lesson with audio"
 ```

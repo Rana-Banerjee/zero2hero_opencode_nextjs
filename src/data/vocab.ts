@@ -2,7 +2,7 @@
 // Why: Separating vocab from lessons lets you fetch just the words for a lesson
 // without loading all lesson metadata — important when this becomes an API.
 
-import type { VocabItem, Phrase } from "@/types/lesson";
+import type { VocabItem } from "@/types/lesson";
 
 // --- Greetings lesson ---
 
@@ -57,25 +57,6 @@ export const greetingsVocab: VocabItem[] = [
   },
 ] satisfies VocabItem[];
 
-export const greetingsPhrases: Phrase[] = [
-  {
-    id: "greetings-namaskara-helidru",
-    lessonId: "greetings",
-    romanised: "Namaskara, hege iddira?",
-    kannadaScript: "ನಮಸ್ಕಾರ, ಹೇಗೆ ಇದ್ದೀರಾ?",
-    english: "Hello, how are you?",
-    audioSrc: "audio/greetings_namaskara-helidru.mp3",
-  },
-  {
-    id: "greetings-dhanyavaadagalu-beku",
-    lessonId: "greetings",
-    romanised: "Dhanyavaadagalu, tumba chennagiddini.",
-    kannadaScript: "ಧನ್ಯವಾದಗಳು, ತುಂಬಾ ಚೆನ್ನಾಗಿದ್ದೀನಿ.",
-    english: "Thank you, I am very well.",
-    audioSrc: "audio/greetings_dhanyavaadagalu-beku.mp3",
-  },
-] satisfies Phrase[];
-
 // --- Introductions lesson ---
 
 export const introductionsVocab: VocabItem[] = [
@@ -129,17 +110,6 @@ export const introductionsVocab: VocabItem[] = [
   },
 ] satisfies VocabItem[];
 
-export const introductionsPhrases: Phrase[] = [
-  {
-    id: "intro-full-intro",
-    lessonId: "introductions",
-    romanised: "Namaskara, nanna hesaru Ravi. Ninna hesaru yenu?",
-    kannadaScript: "ನಮಸ್ಕಾರ, ನನ್ನ ಹೆಸರು ರವಿ. ನಿನ್ನ ಹೆಸರು ಏನು?",
-    english: "Hello, my name is Ravi. What is your name?",
-    audioSrc: "audio/intro_full-intro.mp3",
-  },
-] satisfies Phrase[];
-
 // --- Yes/No/Maybe lesson ---
 
 export const yesNoVocab: VocabItem[] = [
@@ -192,25 +162,6 @@ export const yesNoVocab: VocabItem[] = [
     audioSrc: "audio/yesno_ashte.mp3",
   },
 ] satisfies VocabItem[];
-
-export const yesNoPhrases: Phrase[] = [
-  {
-    id: "yesno-coffee-beku",
-    lessonId: "yes-no-maybe",
-    romanised: "Coffee beka?",
-    kannadaScript: "ಕಾಫಿ ಬೇಕಾ?",
-    english: "Do you want coffee?",
-    audioSrc: "audio/yesno_coffee-beku.mp3",
-  },
-  {
-    id: "yesno-coffee-beku-reply",
-    lessonId: "yes-no-maybe",
-    romanised: "Howdu, coffee beku. Dhanyavaadagalu.",
-    kannadaScript: "ಹೌದು, ಕಾಫಿ ಬೇಕು. ಧನ್ಯವಾದಗಳು.",
-    english: "Yes, I want coffee. Thank you.",
-    audioSrc: "audio/yesno_coffee-beku-reply.mp3",
-  },
-] satisfies Phrase[];
 
 // --- Numbers 1–10 lesson ---
 
@@ -297,25 +248,6 @@ export const numbersOneToTenVocab: VocabItem[] = [
   },
 ] satisfies VocabItem[];
 
-export const numbersOneToTenPhrases: Phrase[] = [
-  {
-    id: "numbers-one-to-ten-counting",
-    lessonId: "numbers-one-to-ten",
-    romanised: "Ondu, yeradu, mooru!",
-    kannadaScript: "ಒಂದು, ಎರಡು, ಮೂರು!",
-    english: "One, two, three!",
-    audioSrc: "audio/numbers-one-to-ten_counting.mp3",
-  },
-  {
-    id: "numbers-one-to-ten-eshtu",
-    lessonId: "numbers-one-to-ten",
-    romanised: "Eshtu? Aaidu.",
-    kannadaScript: "ಎಷ್ಟು? ಐದು.",
-    english: "How many? Five.",
-    audioSrc: "audio/numbers-one-to-ten_eshtu.mp3",
-  },
-] satisfies Phrase[];
-
 // --- Food & Drink lesson ---
 
 export const foodAndDrinkVocab: VocabItem[] = [
@@ -385,32 +317,175 @@ export const foodAndDrinkVocab: VocabItem[] = [
   },
 ] satisfies VocabItem[];
 
-export const foodAndDrinkPhrases: Phrase[] = [
+// --- Auto Driver lesson ---
+
+export const autoDriverVocab: VocabItem[] = [
   {
-    id: "food-and-drink-ootta-aaytha",
-    lessonId: "food-and-drink",
-    romanised: "Ootta aaytha?",
-    kannadaScript: "ಊಟ ಆಯ್ತಾ?",
-    english: "Have you eaten?",
-    audioSrc: "audio/food-and-drink_ootta-aaytha.mp3",
+    id: "auto-driver-auto",
+    lessonId: "auto-driver",
+    romanised: "Auto",
+    kannadaScript: "ಆಟೋ",
+    english: "Auto rickshaw",
+    audioSrc: "audio/auto-driver_auto.mp3",
   },
   {
-    id: "food-and-drink-coffee-beku",
-    lessonId: "food-and-drink",
-    romanised: "Coffee beku, dayavittu.",
-    kannadaScript: "ಕಾಫಿ ಬೇಕು, ದಯವಿಟ್ಟು.",
-    english: "I want coffee, please.",
-    audioSrc: "audio/food-and-drink_coffee-beku.mp3",
+    id: "auto-driver-meter",
+    lessonId: "auto-driver",
+    romanised: "Meter",
+    kannadaScript: "ಮೀಟರ್",
+    english: "Meter (fare meter)",
+    audioSrc: "audio/auto-driver_meter.mp3",
   },
   {
-    id: "food-and-drink-neeru-beku",
-    lessonId: "food-and-drink",
-    romanised: "Neeru beku. Dhanyavaadagalu.",
-    kannadaScript: "ನೀರು ಬೇಕು. ಧನ್ಯವಾದಗಳು.",
-    english: "I want water. Thank you.",
-    audioSrc: "audio/food-and-drink_neeru-beku.mp3",
+    id: "auto-driver-eshtu",
+    lessonId: "auto-driver",
+    romanised: "Eshtu?",
+    kannadaScript: "ಎಷ್ಟು?",
+    english: "How much?",
+    audioSrc: "audio/auto-driver_eshtu.mp3",
   },
-] satisfies Phrase[];
+  {
+    id: "auto-driver-hogbeku",
+    lessonId: "auto-driver",
+    romanised: "Hogbeku",
+    kannadaScript: "ಹೋಗ್ಬೇಕು",
+    english: "Need to go",
+    audioSrc: "audio/auto-driver_hogbeku.mp3",
+  },
+  {
+    id: "auto-driver-nere",
+    lessonId: "auto-driver",
+    romanised: "Nere",
+    kannadaScript: "ನೇರೆ",
+    english: "Straight",
+    audioSrc: "audio/auto-driver_nere.mp3",
+  },
+  {
+    id: "auto-driver-baaldakke",
+    lessonId: "auto-driver",
+    romanised: "Baaldakke",
+    kannadaScript: "ಬಾಲ್ದಕ್ಕೆ",
+    english: "To the right",
+    audioSrc: "audio/auto-driver_baaldakke.mp3",
+  },
+  {
+    id: "auto-driver-edakke",
+    lessonId: "auto-driver",
+    romanised: "Edakke",
+    kannadaScript: "ಎಡಕ್ಕೆ",
+    english: "To the left",
+    audioSrc: "audio/auto-driver_edakke.mp3",
+  },
+  {
+    id: "auto-driver-nillisi",
+    lessonId: "auto-driver",
+    romanised: "Nillisi",
+    kannadaScript: "ನಿಲ್ಲಿಸಿ",
+    english: "Stop",
+    audioSrc: "audio/auto-driver_nillisi.mp3",
+  },
+  {
+    id: "auto-driver-bandiddini",
+    lessonId: "auto-driver",
+    romanised: "Bandiddini",
+    kannadaScript: "ಬಂದಿದ್ದೀನಿ",
+    english: "I have come / I arrived",
+    audioSrc: "audio/auto-driver_bandiddini.mp3",
+  },
+  {
+    id: "auto-driver-haaki",
+    lessonId: "auto-driver",
+    romanised: "Haaki",
+    kannadaScript: "ಹಾಕಿ",
+    english: "Put / start (the meter)",
+    audioSrc: "audio/auto-driver_haaki.mp3",
+  },
+] satisfies VocabItem[];
+
+// --- House Help lesson ---
+
+export const houseHelpVocab: VocabItem[] = [
+  {
+    id: "house-help-olagane",
+    lessonId: "house-help",
+    romanised: "Olagane",
+    kannadaScript: "ಒಳಗಣೆ",
+    english: "Inside / indoors",
+    audioSrc: "audio/house-help_olagane.mp3",
+  },
+  {
+    id: "house-help-kesaru",
+    lessonId: "house-help",
+    romanised: "Kesaru",
+    kannadaScript: "ಕಸರು",
+    english: "Sweeping / dust",
+    audioSrc: "audio/house-help_kesaru.mp3",
+  },
+  {
+    id: "house-help-thoDi",
+    lessonId: "house-help",
+    romanised: "ThoDi",
+    kannadaScript: "ತೊಡಿ",
+    english: "Mopping",
+    audioSrc: "audio/house-help_thoDi.mp3",
+  },
+  {
+    id: "house-help-bittige",
+    lessonId: "house-help",
+    romanised: "Bittige",
+    kannadaScript: "ಬಿಟ್ಟಿಗೆ",
+    english: "Vessels / utensils",
+    audioSrc: "audio/house-help_bittige.mp3",
+  },
+  {
+    id: "house-help-baTTige",
+    lessonId: "house-help",
+    romanised: "BaTTige",
+    kannadaScript: "ಬಟ್ಟಿಗೆ",
+    english: "Clothes",
+    audioSrc: "audio/house-help_baTTige.mp3",
+  },
+  {
+    id: "house-help-neeru",
+    lessonId: "house-help",
+    romanised: "Neeru",
+    kannadaScript: "ನೀರು",
+    english: "Water",
+    audioSrc: "audio/house-help_neeru.mp3",
+  },
+  {
+    id: "house-help-ootta",
+    lessonId: "house-help",
+    romanised: "Ootta",
+    kannadaScript: "ಊಟ",
+    english: "Cooking / meal",
+    audioSrc: "audio/house-help_ootta.mp3",
+  },
+  {
+    id: "house-help-saLedu",
+    lessonId: "house-help",
+    romanised: "SaLedu",
+    kannadaScript: "ಸಾಲೆದು",
+    english: "Salary / wages",
+    audioSrc: "audio/house-help_saLedu.mp3",
+  },
+  {
+    id: "house-help-reNNe",
+    lessonId: "house-help",
+    romanised: "ReNNe",
+    kannadaScript: "ರೆಣ್ಣೆ",
+    english: "Iron (clothes)",
+    audioSrc: "audio/house-help_reNNe.mp3",
+  },
+  {
+    id: "house-help-raatri",
+    lessonId: "house-help",
+    romanised: "Raatri",
+    kannadaScript: "ರಾತ್ರಿ",
+    english: "Night",
+    audioSrc: "audio/house-help_raatri.mp3",
+  },
+] satisfies VocabItem[];
 
 // --- Helper: get all vocab for a lesson ---
 
@@ -422,20 +497,10 @@ const vocabByLesson: Record<string, VocabItem[]> = {
   "yes-no-maybe": yesNoVocab,
   "numbers-one-to-ten": numbersOneToTenVocab,
   "food-and-drink": foodAndDrinkVocab,
-};
-
-const phrasesByLesson: Record<string, Phrase[]> = {
-  greetings: greetingsPhrases,
-  introductions: introductionsPhrases,
-  "yes-no-maybe": yesNoPhrases,
-  "numbers-one-to-ten": numbersOneToTenPhrases,
-  "food-and-drink": foodAndDrinkPhrases,
+  "auto-driver": autoDriverVocab,
+  "house-help": houseHelpVocab,
 };
 
 export function getVocabForLesson(lessonId: string): VocabItem[] {
   return vocabByLesson[lessonId] ?? [];
-}
-
-export function getPhrasesForLesson(lessonId: string): Phrase[] {
-  return phrasesByLesson[lessonId] ?? [];
 }

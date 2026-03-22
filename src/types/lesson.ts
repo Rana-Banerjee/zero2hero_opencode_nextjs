@@ -6,6 +6,12 @@
 // LEARN: string literal union — only these three values are valid.
 export type LessonLevel = "beginner" | "intermediate" | "advanced";
 
+// LEARN: Each lesson has a format that determines how content is rendered.
+// "phrases" = vocab + standalone phrases
+// "conversation" = vocab + speaker-attributed dialogue turns
+// "mcq" = vocab + multiple choice quiz questions
+export type LessonFormat = "phrases" | "conversation" | "mcq";
+
 // A lesson is a container — e.g. "Greetings", "Numbers", "Food".
 export interface Lesson {
   id: string;
@@ -13,6 +19,7 @@ export interface Lesson {
   kannadaScript: string; // displayed alongside title for visual association
   description: string;
   level: LessonLevel;
+  format: LessonFormat; // determines which content section to render
   category: string;
 }
 
@@ -34,4 +41,25 @@ export interface Phrase {
   kannadaScript: string; // displayed alongside romanised text
   english: string;
   audioSrc: string;
+  speaker?: string; // used in conversation format, e.g. "You", "Auto Driver"
+}
+
+// MCQ option within a question.
+export interface McqOption {
+  id: string;
+  romanised: string;
+  kannadaScript: string;
+  english: string;
+}
+
+// A single multiple-choice question.
+export interface McqQuestion {
+  id: string;
+  lessonId: string;
+  prompt: string; // e.g. "What does 'namaskara' mean?"
+  kannadaScript: string;
+  audioSrc: string;
+  options: McqOption[]; // 3–4 choices
+  correctOptionId: string;
+  explanation?: string; // shown after answering
 }
